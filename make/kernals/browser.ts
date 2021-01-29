@@ -95,11 +95,11 @@ export function start(): Promise<void> {
     });
 }
 
-export function draw(str: any) {
+export function draw(str: string) {
     if (blockKernal)
         return;
     // @ts-ignore
-    document.getElementById("textContainer").innerHTML = String(str);
+    document.getElementById("textContainer").innerHTML = str;
 }
 
 export function log(str: any) {

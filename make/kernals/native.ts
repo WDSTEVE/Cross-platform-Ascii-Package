@@ -15,7 +15,7 @@ export interface Rgb {
 
 let blockKernal = true;
 let startedKernal = false;
-export let enableColor = false;
+export let enableColor = true;
 export let enableSound = true;
 
 export function bold(str: string) {
@@ -71,10 +71,15 @@ export function start(): Promise<void> {
     if (startedKernal)
         return Promise.resolve();
     return new Promise(async (resolve, reject) => {
-        if (Deno.noColor) {
+        if (Deno.noColor === false) {
+            blockKernal = false;
+            startedKernal = true;
+            resolve();
+        } else {
             blockKernal = true;
             console.clear();
-            console.log("Your system does not seem to have ANSI support, this means you can't see text formatting. If you had ANSI support the following text would be pink.");
+            console.log("Your system does not seem to have ANSI support, this means you can't see text formatting.");
+            console.log("If you had ANSI support the following text would be pink.");
             console.log(magenta("I am pink."));
             console.log("Press any key to disable formatting, press Y to continue with ANSI formatting.");
             for await (const keypress of getUnblockedKeyboard()) {
@@ -82,41 +87,36 @@ export function start(): Promise<void> {
                 blockKernal = false;
                 startedKernal = true;
                 resolve();
-                break;
+                return;
             }
-        } else {
-            blockKernal = false;
-            enableColor = true;
-            startedKernal = true;
-            resolve();
         }
     });
 }
 
-export function draw(str: any) {
+export function draw(str: string) {
     if (blockKernal)
         return;
     console.clear();
-    console.log(Number(str));
+    console.log(str);
 }
 export function log(str: any) {
     if (blockKernal)
         return;
-    console.log(Number(str));
+    console.log(str);
 }
 
 export async function* getKeyboard(): AsyncGenerator<Keypress> {
     for await (const keypress of readKeypress()) {
         if (keypress.ctrlKey && keypress.key === 'c') Deno.exit(0);
-        if (blockKernal)
-            continue;
-        yield {
-            key: keypress.key,
-            keyCode: keypress.keyCode,
-            ctrlKey: keypress.ctrlKey,
-            metaKey: keypress.metaKey,
-            shiftKey: keypress.shiftKey
-        };
+        if (!blockKernal) {
+            yield {
+                key: keypress.key,
+                keyCode: keypress.keyCode,
+                ctrlKey: keypress.ctrlKey,
+                metaKey: keypress.metaKey,
+                shiftKey: keypress.shiftKey
+            };
+        }
     }
 }
 

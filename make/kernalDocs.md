@@ -9,11 +9,11 @@
 #### draw(str: string): void
     Displays a string on the screen replacing anything else.
     
-    Kernal.draw("Hello World!");
-#### log(str: string): void
+    Kernal.draw("It is just me here");
+#### log(str: any): void
     Displays a string on the screen below anything else.
     
-    Kernal.draw("Hello World!");
+    Kernal.log("Hello World!");
 #### getKeyboard(): AsyncIterable<Keypress\>
     Detects keystrokes and yields them as Keypresses. 
     
