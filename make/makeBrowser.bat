@@ -1,4 +1,3 @@
-
 del browserSrc /Q
 rmdir browserSrc
 del ..\builds\browser /Q

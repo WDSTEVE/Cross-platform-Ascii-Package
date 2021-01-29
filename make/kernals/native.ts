@@ -99,6 +99,11 @@ export function draw(str: string) {
     console.clear();
     console.log(str);
 }
+export function log(str: string) {
+    if (blockKernal)
+        return;
+    console.log(str);
+}
 
 export async function* getKeyboard(): AsyncGenerator<Keypress> {
     for await (const keypress of readKeypress()) {

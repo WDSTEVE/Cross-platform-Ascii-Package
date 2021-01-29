@@ -1,15 +1,19 @@
 # Functions
 ## General
-#### draw(str: string): void
-    Displays a string on the screen replacing anything else.
-    
-    Kernal.draw("Hello World!");
 #### start(): Promise<void>
     Waits tell the kernal is done setting up.
 
     Kernal.start().then(() => {
         Kernal.speak("Hello").catch(() => { });
     });
+#### draw(str: string): void
+    Displays a string on the screen replacing anything else.
+    
+    Kernal.draw("Hello World!");
+#### log(str: string): void
+    Displays a string on the screen below anything else.
+    
+    Kernal.draw("Hello World!");
 #### getKeyboard(): AsyncIterable<Keypress\>
     Detects keystrokes and yields them as Keypresses. 
     
