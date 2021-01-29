@@ -1,4 +1,4 @@
-import { readKeypress } from "../make/keypress-0.0.7-fork/mod.ts"; // do not run unless in the src folder
+import { readKeypress } from "./keypress-0.0.7-fork/mod.ts"; // do not run unless in the src folder
 import * as Colors from "https://deno.land/std@0.84.0/fmt/colors.ts";
 export interface Keypress {
     key: string | undefined,

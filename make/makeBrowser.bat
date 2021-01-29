@@ -2,6 +2,8 @@ del browserSrc /Q
 rmdir browserSrc
 del ..\builds\browser /Q
 rmdir ..\builds\browser
+del ..\src\keypress-0.0.7-fork /Q
+rmdir ..\src\keypress-0.0.7-fork
 copy .\kernals\browser.ts ..\src\kernal.ts /Y
 xcopy ..\src .\browserSrc\ /Y
 call deno run --allow-read --allow-write far.ts ./browserSrc .+\.ts "((from)|(import)) \"[a-zA-Z0-9 _\/\.]+\.ts\"" "return found.substring(0, found.length-4)+\".js\\\"\""

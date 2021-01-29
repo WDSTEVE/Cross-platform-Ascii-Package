@@ -95,11 +95,18 @@ export function start(): Promise<void> {
     });
 }
 
-export function draw(str: string) {
+export function draw(str: any) {
     if (blockKernal)
         return;
     // @ts-ignore
-    document.getElementById("textContainer").innerHTML = str;
+    document.getElementById("textContainer").innerHTML = String(str);
+}
+
+export function log(str: any) {
+    if (blockKernal)
+        return;
+    // @ts-ignore
+    document.getElementById("textContainer").innerHTML += String(str);
 }
 
 export async function* getKeyboard(): AsyncIterable<Keypress> {

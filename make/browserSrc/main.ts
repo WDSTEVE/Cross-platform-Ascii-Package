@@ -11,7 +11,7 @@ Kernal.draw(
 
 (async () => {
     for await (let key of Kernal.getKeyboard()) {
-        console.log(key);
+        Kernal.log(key);
         Kernal.beep(1000, 2);
     }
 })();
