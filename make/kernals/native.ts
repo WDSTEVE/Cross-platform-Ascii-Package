@@ -93,16 +93,16 @@ export function start(): Promise<void> {
     });
 }
 
-export function draw(str: string) {
+export function draw(str: any) {
     if (blockKernal)
         return;
     console.clear();
-    console.log(str);
+    console.log(Number(str));
 }
-export function log(str: string) {
+export function log(str: any) {
     if (blockKernal)
         return;
-    console.log(str);
+    console.log(Number(str));
 }
 
 export async function* getKeyboard(): AsyncGenerator<Keypress> {
